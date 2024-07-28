@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.gita.game2048v1.R
 import uz.gita.game2048v1.databinding.DialogGameOverBinding
+import uz.gita.game2048v1.utils.animateOnClick
 
 class GameOverDialog : DialogFragment() {
     override fun onCreateView(
@@ -57,15 +58,15 @@ class GameOverDialog : DialogFragment() {
         binding.tvCurrentScore.text = current
         binding.tvHighScore.text = max
 
-        binding.btnPlay.setOnClickListener {
+        binding.btnPlay.animateOnClick {
             if (btnPlayListener != null) btnPlayListener!!()
         }
 
-        binding.btnHome.setOnClickListener {
+        binding.btnHome.animateOnClick {
             btnHomeListener?.invoke()
         }
 
-        binding.btnBack.setOnClickListener {
+        binding.btnBack.animateOnClick {
             btnBackListener?.invoke()
         }
     }

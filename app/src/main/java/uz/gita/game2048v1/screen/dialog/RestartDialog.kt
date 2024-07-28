@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.gita.game2048v1.R
 import uz.gita.game2048v1.databinding.DialogRestartBinding
+import uz.gita.game2048v1.utils.animateOnClick
 
 
 class RestartDialog : DialogFragment() {
@@ -53,12 +54,12 @@ class RestartDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        binding.btnYes.setOnClickListener {
+        binding.btnYes.animateOnClick {
             if(listener != null) listener!!()
             dialog?.dismiss()
         }
 
-        binding.btnNo.setOnClickListener {
+        binding.btnNo.animateOnClick {
             dialog?.dismiss()
         }
     }

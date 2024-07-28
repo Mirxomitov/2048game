@@ -56,7 +56,7 @@ class MySharedPref {
 
     fun getIsWin(): Boolean = sharedPref.getBoolean("ISWIN", false)
 
-    fun setIsWin(isWin : Boolean) {
+    fun setIsWin(isWin: Boolean) {
         sharedPref.edit().putBoolean("ISWIN", isWin).apply()
     }
 

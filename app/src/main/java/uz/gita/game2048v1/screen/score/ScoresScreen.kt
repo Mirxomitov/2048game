@@ -12,6 +12,7 @@ import uz.gita.game2048v1.MainActivity
 import uz.gita.game2048v1.R
 import uz.gita.game2048v1.databinding.ScreenScoresBinding
 import uz.gita.game2048v1.screen.adapter.ScoresAdapter
+import uz.gita.game2048v1.utils.animateOnClick
 import uz.gita.game2048v1.utils.popBackStack
 
 class ScoresScreen : Fragment(R.layout.screen_scores), ScoresContract.View {
@@ -41,7 +42,7 @@ class ScoresScreen : Fragment(R.layout.screen_scores), ScoresContract.View {
             binding.emptyPlaceHolder.isVisible = ls.isEmpty()
         }
 
-        binding.btnBack.setOnClickListener {
+        binding.btnBack.animateOnClick {
             (requireContext() as MainActivity).popBackStack()
         }
 

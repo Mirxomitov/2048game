@@ -21,4 +21,5 @@ interface AppRepository {
     fun saveButtonsState()
     fun saveIsWinHelper(num: Int)
     fun getNum(): Int
+    fun canMoveBack() : Boolean
 }

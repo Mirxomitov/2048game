@@ -43,9 +43,10 @@ class PlayModel : ViewModel() {
         repository.saveButtonsState()
     }
 
-    fun saveIsWinHelper(num : Int) {
+    fun saveIsWinHelper(num: Int) {
         repository.saveIsWinHelper(num)
     }
 
     fun getNum() = repository.getNum()
+    fun canMoveBack() = repository.canMoveBack()
 }

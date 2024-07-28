@@ -68,4 +68,6 @@ class PlayViewModel {
     fun saveButtonsState() {
         model.saveButtonsState()
     }
+
+    fun canMoveBack() = model.canMoveBack()
 }

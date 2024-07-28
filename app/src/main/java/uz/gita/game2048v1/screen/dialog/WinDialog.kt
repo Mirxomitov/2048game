@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.gita.game2048v1.R
 import uz.gita.game2048v1.databinding.DialogWinBinding
+import uz.gita.game2048v1.utils.animateOnClick
 
 
 class WinDialog : DialogFragment() {
@@ -65,7 +66,7 @@ class WinDialog : DialogFragment() {
         binding.tvCurrentScore.text = current
         binding.tvHighScore.text = max
 
-        binding.btnPlay.setOnClickListener {
+        binding.btnPlay.animateOnClick {
             listener?.invoke()
             dialog?.dismiss()
         }

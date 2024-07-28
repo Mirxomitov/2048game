@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import uz.gita.game2048v1.data.model.RecordData
 import uz.gita.game2048v1.databinding.ItemScoreBinding
-import uz.gita.game2048v1.utils.myLog
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -32,7 +31,6 @@ class ScoresAdapter : RecyclerView.Adapter<ScoresAdapter.ScoresViewHolder>() {
         list.addAll(ls/*.filter { return@filter it.record.toInt() != 0 }*/)
         list.sortedBy { it.record }
         notifyDataSetChanged()
-        "${ls.size}".myLog()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ScoresViewHolder(

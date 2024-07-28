@@ -2,7 +2,6 @@ package uz.gita.game2048v1.screen.play
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -13,14 +12,15 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.gita.game2048v1.MainActivity
 import uz.gita.game2048v1.R
 import uz.gita.game2048v1.data.model.SideEnum
-import uz.gita.game2048v1.data.source.MySharedPref
 import uz.gita.game2048v1.databinding.ScreenPlayBinding
 import uz.gita.game2048v1.screen.dialog.GameOverDialog
 import uz.gita.game2048v1.screen.dialog.RestartDialog
 import uz.gita.game2048v1.screen.dialog.WinDialog
 import uz.gita.game2048v1.utils.MyBackgroundUtil
 import uz.gita.game2048v1.utils.MyTouchListener
+import uz.gita.game2048v1.utils.animateOnClick
 import uz.gita.game2048v1.utils.popBackStack
+import uz.gita.game2048v1.utils.setOnSingleClickListener
 
 class PlayScreen : Fragment(R.layout.screen_play) {
     private val binding by viewBinding(ScreenPlayBinding::bind)
@@ -105,19 +105,18 @@ class PlayScreen : Fragment(R.layout.screen_play) {
 
         }
 
-        binding.btnHome.setOnClickListener {
+        binding.btnHome.animateOnClick {
             viewModel.saveButtonsState()
             viewModel.saveIsWin()
             (requireContext() as MainActivity).popBackStack()
         }
 
-        binding.btnBack.setOnClickListener {
+        binding.btnBack.setOnSingleClickListener {
             viewModel.backOneStep()
-            Log.d("TTT", "btnBack.setOnClickListener")
             loadData()
         }
 
-        binding.btnRestart.setOnClickListener {
+        binding.btnRestart.animateOnClick {
             val dialog = RestartDialog()
             dialog.setBtnYesListener {
                 viewModel.startNewGame()
@@ -157,6 +156,12 @@ class PlayScreen : Fragment(R.layout.screen_play) {
     }
 
     private fun loadData() {
+        binding.btnBack
+            .animate()
+            .setDuration(100L)
+            .scaleX(if (viewModel.canMoveBack()) 1f else 0f)
+            .scaleY(if (viewModel.canMoveBack()) 1f else 0f)
+
         val matrix = viewModel.getMatrix()
         for (i in matrix.indices) {
             for (j in matrix[i].indices) {

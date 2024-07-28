@@ -9,22 +9,25 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.gita.game2048v1.R
 import uz.gita.game2048v1.databinding.ScreenInfoBinding
+import uz.gita.game2048v1.utils.animateOnClick
 
 class InfoScreen : Fragment(R.layout.screen_info) {
     private val binding by viewBinding(ScreenInfoBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.btnBack.setOnClickListener {
+        binding.btnBack.animateOnClick {
             findNavController().popBackStack()
         }
 
-        binding.telegram.setOnClickListener {
+        binding.telegram.animateOnClick {
             openUrl("https://t.me/Mirxomitov")
         }
-        binding.instagram.setOnClickListener {
+
+        binding.instagram.animateOnClick {
             openUrl("https://www.instagram.com/mirxomitovportfolio")
         }
-        binding.gmail.setOnClickListener {
+
+        binding.gmail.animateOnClick {
             openUrl("mailto:mirxtohir@gmail.com")
         }
     }

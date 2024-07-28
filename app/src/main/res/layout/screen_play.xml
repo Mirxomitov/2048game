@@ -53,18 +53,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/offside_regular"
-            android:text="@string/best_score"
+            android:text="@string/now"
             android:textColor="#EDEDED"
             tools:textSize="12sp" />
 
         <TextView
-            android:id="@+id/bestScore"
+            android:id="@+id/currentScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:fontFamily="@font/offside_regular"
             android:textColor="@color/white"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             tools:text="100000" />
 
@@ -88,18 +88,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/offside_regular"
-            android:text="@string/now"
+            android:text="@string/best_score"
             android:textColor="#EDEDED"
             tools:textSize="12sp" />
 
         <TextView
-            android:id="@+id/currentScore"
+            android:id="@+id/bestScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:fontFamily="@font/offside_regular"
             android:textColor="@color/white"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             tools:text="100000" />
 
@@ -133,6 +133,7 @@
         android:layout_height="0dp"
         android:layout_margin="24dp"
         android:orientation="vertical"
+        android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="parent"

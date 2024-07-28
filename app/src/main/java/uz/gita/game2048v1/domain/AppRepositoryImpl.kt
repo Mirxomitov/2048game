@@ -1,12 +1,10 @@
 package uz.gita.game2048v1.domain
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import uz.gita.game2048v1.data.model.RecordData
 import uz.gita.game2048v1.data.source.MyDatabase
 import uz.gita.game2048v1.data.source.MySharedPref
-import uz.gita.game2048v1.utils.myLog
 import java.util.concurrent.Executors
 
 class AppRepositoryImpl : AppRepository {
@@ -164,7 +162,6 @@ class AppRepositoryImpl : AppRepository {
 
     private fun saveMaxResult() {
         if (maxRecord.value!! <= currentRecord.value!!) {
-            "${currentRecord.value!!}".myLog()
             maxRecord.value = currentRecord.value
             sharedPref.saveMax(maxRecord.value!!)
         }
@@ -193,7 +190,6 @@ class AppRepositoryImpl : AppRepository {
                     matrix[i][index] *= 2
                     if (!isWin && matrix[i][index] == 2048) {
                         isWin = true
-                        Log.d("TTT", "$isWin 2048")
 
                     }
                     sum += matrix[i][index]
@@ -255,7 +251,6 @@ class AppRepositoryImpl : AppRepository {
                     matrix[i][index] *= 2
                     if (!isWin && matrix[i][index] == 2048) {
                         isWin = true
-                        Log.d("TTT", "$isWin 2048")
 
                     }
                     sum += matrix[i][index] // sum
@@ -318,7 +313,6 @@ class AppRepositoryImpl : AppRepository {
 
                     if (!isWin && matrix[index][j] == 2048) {
                         isWin = true
-                        Log.d("TTT", "$isWin 2048")
 
                     }
                     sum += matrix[index][j]
@@ -379,7 +373,6 @@ class AppRepositoryImpl : AppRepository {
 
                     if (!isWin && matrix[index][j] == 2048) {
                         isWin = true
-                        Log.d("TTT", "$isWin 2048")
 
                     }
 
@@ -426,7 +419,6 @@ class AppRepositoryImpl : AppRepository {
         executorService.execute {
             val currentTime = java.time.Instant.now().toEpochMilli()
             insertRecord(RecordData(currentTime, result))
-            "insertRecord($currentTime, $result)".myLog()
         }
     }
 
@@ -450,6 +442,10 @@ class AppRepositoryImpl : AppRepository {
 
     override fun getNum(): Int {
         return sharedPref.getNum()
+    }
+
+    override fun canMoveBack(): Boolean {
+        return canMoveBack
     }
 }
 

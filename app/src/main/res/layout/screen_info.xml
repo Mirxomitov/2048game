@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_color"
     android:orientation="vertical"
     tools:context=".screen.info.InfoScreen">
@@ -15,8 +15,8 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnBack"
             android:layout_width="56dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_vertical"
             android:rotation="180"
             android:rotationX="180"
             android:src="@drawable/btn_back" />
@@ -25,16 +25,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/offside_regular"
             android:text="About Game"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
     </FrameLayout>
 
-    <ImageView
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginHorizontal="12dp"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="12dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_gita" />
@@ -42,8 +45,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="18dp"
+        android:fontFamily="@font/offside_regular"
         android:justificationMode="inter_word"
         android:lineSpacingMultiplier="1.5"
         android:text="@string/info"
@@ -60,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/offside_regular"
         android:gravity="center_horizontal"
         android:justificationMode="inter_word"
         android:text="@string/callUs"
@@ -78,23 +83,23 @@
 
         <ImageView
             android:id="@+id/telegram"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_gravity="start"
             android:src="@drawable/ic_telegram" />
 
         <ImageView
             android:id="@+id/instagram"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_gravity="end"
             android:layout_marginHorizontal="24dp"
             android:src="@drawable/ic_instagram" />
 
         <ImageView
             android:id="@+id/gmail"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_gravity="end"
             android:padding="4dp"
             android:src="@drawable/ic_gmail" />

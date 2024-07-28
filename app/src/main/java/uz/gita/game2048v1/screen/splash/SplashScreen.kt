@@ -11,22 +11,26 @@ import uz.gita.game2048v1.databinding.ScreenSplashBinding
 
 class SplashScreen : Fragment(R.layout.screen_splash) {
     private val binding by viewBinding(ScreenSplashBinding::bind)
+    private var isNavigated = false // Flag to prevent multiple navigations
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.rightBottom.post {
-            binding.apply {
-                val firstY = first.y
-                val secondY = second.y
+            if (isAdded && !isNavigated) { // Check if added and not navigated yet
+                binding.apply {
+                    val firstY = first.y
+                    val secondY = second.y
 
-                first.y = (-100).dpToPx(requireContext())
-                second.y = binding.root.height.toFloat()
+                    first.y = (-100).dpToPx(requireContext())
+                    second.y = binding.root.height.toFloat()
 
-                first.animate().setDuration(1000).y(firstY)
-                    .withEndAction {
-                        findNavController().navigate(SplashScreenDirections.actionSplashScreenToMainScreen())
-                    }
+                    first.animate().setDuration(1000).y(firstY)
+                        .withEndAction {
+                            isNavigated = true // Set flag after navigation
+                            findNavController().navigate(SplashScreenDirections.actionSplashScreenToMainScreen())
+                        }
 
-                second.animate().setDuration(1000).y(secondY)
+                    second.animate().setDuration(1000).y(secondY)
+                }
             }
         }
     }
