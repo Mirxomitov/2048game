@@ -14,7 +14,7 @@ class MainScreen : Fragment(R.layout.screen_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val navController = findNavController()
-        binding.btnPlay.animateOnClick {
+        binding.btnPlay.setOnClickListener {
             navController.navigate(MainScreenDirections.actionMainScreenToPlayScreen(false))
         }
 
