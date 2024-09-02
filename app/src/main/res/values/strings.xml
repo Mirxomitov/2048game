@@ -14,6 +14,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="do_you_want_to_restart_game">Do you want to restart game?</string>
-    <string name="info">2048 is an engaging game where you merge numbers to reach the coveted 2048 tile. Challenge yourself and compete with friends as the game saves your 20 highest scores and dates. This game was created by a student from Generation IT Academy, showcasing their passion for coding and creativity.</string>
+    <string name="info">2048 is an engaging game where you merge numbers to reach the coveted 2048 tile. Challenge yourself and compete with friends. This game was created by a student from Generation IT Academy, showcasing their passion for coding and creativity.</string>
     <string name="callUs">Call us:</string>
 </resources>

@@ -14,8 +14,8 @@ android {
         applicationId = "uz.gita.game2048v1"
         minSdk = 24
         targetSdk = 34
-        versionCode = 3
-        versionName = "1.1"
+        versionCode = 5
+        versionName = "1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

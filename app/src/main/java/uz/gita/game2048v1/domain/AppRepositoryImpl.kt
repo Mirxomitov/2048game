@@ -2,8 +2,8 @@ package uz.gita.game2048v1.domain
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
-import uz.gita.game2048v1.data.model.RecordData
-import uz.gita.game2048v1.data.source.MyDatabase
+//import uz.gita.game2048v1.data.model.RecordData
+//import uz.gita.game2048v1.data.source.MyDatabase
 import uz.gita.game2048v1.data.source.MySharedPref
 import java.util.concurrent.Executors
 
@@ -28,7 +28,7 @@ class AppRepositoryImpl : AppRepository {
 
 
     private val sharedPref = MySharedPref.getInstance()
-    private val recordDao = MyDatabase.getInstance().recordDao()
+//    private val recordDao = MyDatabase.getInstance().recordDao()
     private val executorService = Executors.newSingleThreadExecutor()
 
     private var isWin = sharedPref.getIsWin()
@@ -128,8 +128,8 @@ class AppRepositoryImpl : AppRepository {
         }
     }
 
-    override fun insertRecord(data: RecordData) = recordDao.addRecord(data)
-    override fun twentyBestScores() = recordDao.twentyBestScores()
+//    override fun insertRecord(data: RecordData) = recordDao.addRecord(data)
+//    override fun twentyBestScores() = recordDao.twentyBestScores()
 
 
     @SuppressLint("NewApi")
@@ -414,11 +414,11 @@ class AppRepositoryImpl : AppRepository {
 
     @SuppressLint("NewApi")
     override fun saveResult() {
-        val result = currentRecord.value!!
+//        val result = currentRecord.value!!
 
         executorService.execute {
-            val currentTime = java.time.Instant.now().toEpochMilli()
-            insertRecord(RecordData(currentTime, result))
+//            val currentTime = java.time.Instant.now().toEpochMilli()
+//            insertRecord(RecordData(currentTime, result))
         }
     }
 

@@ -1,7 +1,7 @@
 package uz.gita.game2048v1.domain
 
 import androidx.lifecycle.MutableLiveData
-import uz.gita.game2048v1.data.model.RecordData
+//import uz.gita.game2048v1.data.model.RecordData
 
 interface AppRepository {
     fun getMatrix(): Array<Array<Int>>
@@ -10,10 +10,10 @@ interface AppRepository {
     fun moveUp() : Boolean
     fun moveDown() : Boolean
     fun startNewGame()
-    fun insertRecord(data : RecordData)
+//    fun insertRecord(data : RecordData)
     fun getCurrentRecord(): MutableLiveData<Long>
     fun getMaxRecord(): MutableLiveData<Long>
-    fun twentyBestScores(): List<RecordData>
+//    fun twentyBestScores(): List<RecordData>
     fun backOneStep()
     fun saveResult()
     fun saveIsWin()
