@@ -7,7 +7,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.gita.game2048v1.MainActivity
 import uz.gita.game2048v1.R
@@ -26,22 +25,6 @@ class PlayScreen : Fragment(R.layout.screen_play) {
     private val binding by viewBinding(ScreenPlayBinding::bind)
     private val viewModel = PlayViewModel()
     private var list = ArrayList<AppCompatTextView>(16)
-
-    private var observer = Observer<Boolean> {
-        if (it) {
-            val dialog = WinDialog()
-            dialog.apply {
-                arguments = bundleOf(
-                    Pair("MAX", binding.bestScore.text.toString()),
-                    Pair("CURRENT", binding.currentScore.text.toString())
-                )
-            }
-            dialog.setListener {
-                dialog.dismiss()
-            }
-            dialog.show(parentFragmentManager, "WinDialog")
-        }
-    }
 
 
     @SuppressLint("FragmentLiveDataObserve")
