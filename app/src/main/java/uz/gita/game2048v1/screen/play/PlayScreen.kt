@@ -20,6 +20,7 @@ import uz.gita.game2048v1.utils.MyBackgroundUtil
 import uz.gita.game2048v1.utils.MyTouchListener
 import uz.gita.game2048v1.utils.animateOnClick
 import uz.gita.game2048v1.utils.popBackStack
+import uz.gita.game2048v1.utils.setOnSingleClickListener
 
 class PlayScreen : Fragment(R.layout.screen_play) {
     private val binding by viewBinding(ScreenPlayBinding::bind)
