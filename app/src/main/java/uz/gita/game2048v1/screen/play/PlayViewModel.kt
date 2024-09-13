@@ -1,42 +1,42 @@
 package uz.gita.game2048v1.screen.play
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class PlayViewModel {
+class PlayViewModel : ViewModel() {
     private val model = PlayModel()
     fun getMatrix() = model.getMatrix()
     val currentRecord = model.getCurrentRecord()
     val maxRecord = model.getMaxRecord()
     val showGameOverDialog = MutableLiveData<String>()
     val showWinDialog = MutableLiveData<String>()
+    val isFinished = model.isFinished
+
+    init {
+        model.isFinished.observeForever {
+            if (it) showGameOverDialog.value = "Game over"
+        }
+    }
 
     fun moveLeft() {
-        if (!model.moveLeft()) {
-            showGameOverDialog.value = "Game over"
-        }
+        model.moveLeft()
         checkAndShowWin()
     }
 
     fun moveRight() {
-        if (!model.moveRight()) {
-            showGameOverDialog.value = "Game over"
-        }
+        model.moveRight()
         checkAndShowWin()
 
     }
 
     fun moveDown() {
-        if (!model.moveDown()) {
-            showGameOverDialog.value = "Game over"
-        }
+        model.moveDown()
         checkAndShowWin()
 
     }
 
     fun moveUp() {
-        if (!model.moveUp()) {
-            showGameOverDialog.value = "Game over"
-        }
+        model.moveUp()
         checkAndShowWin()
 
     }
@@ -48,10 +48,6 @@ class PlayViewModel {
 
     fun backOneStep() {
         model.backOneStep()
-    }
-
-    fun saveResult() {
-        model.saveResult()
     }
 
     fun saveIsWin() {

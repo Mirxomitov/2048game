@@ -1,13 +1,9 @@
 package uz.gita.game2048v1.domain
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
-//import uz.gita.game2048v1.data.model.RecordData
-//import uz.gita.game2048v1.data.source.MyDatabase
 import uz.gita.game2048v1.data.source.MySharedPref
-import java.util.concurrent.Executors
 
-class AppRepositoryImpl : AppRepository {
+class AppRepositoryImpl() : AppRepository {
     companion object {
         private var instance: AppRepository? = null
 
@@ -16,8 +12,8 @@ class AppRepositoryImpl : AppRepository {
         }
 
         fun getInstance() = instance!!
+        const val NEW_ELEMENT = 2
     }
-
 
     private var matrix = arrayOf(
         arrayOf(0, 0, 0, 0),
@@ -28,15 +24,10 @@ class AppRepositoryImpl : AppRepository {
 
 
     private val sharedPref = MySharedPref.getInstance()
-//    private val recordDao = MyDatabase.getInstance().recordDao()
-    private val executorService = Executors.newSingleThreadExecutor()
-
     private var isWin = sharedPref.getIsWin()
-
-    private val NEW_ELEMENT = 2
     private var sum: Long = sharedPref.getLastUserScore()
-    private var maxRecord = MutableLiveData<Long>(sharedPref.getMax())
-    private var currentRecord = MutableLiveData<Long>(sharedPref.getLastUserScore())
+    private var maxRecord = MutableLiveData(sharedPref.getMax())
+    private var currentRecord = MutableLiveData(sharedPref.getLastUserScore())
     private var canMoveBack = false
     private var prevScore = currentRecord.value!!
     private var prevMatrix: Array<Array<Int>> = Array(matrix.size) { i ->
@@ -44,7 +35,7 @@ class AppRepositoryImpl : AppRepository {
             matrix[i][j]
         }
     }
-    private val prevHelperMatrix: Array<Array<Int>> = Array(matrix.size) { i ->
+    private val prevSaverMatrix: Array<Array<Int>> = Array(matrix.size) { i ->
         Array(matrix[i].size) { j ->
             matrix[i][j]
         }
@@ -69,6 +60,7 @@ class AppRepositoryImpl : AppRepository {
     override fun getIsWin(): Boolean {
         return isWin
     }
+    override var isFinished: MutableLiveData<Boolean> = MutableLiveData()
 
     override fun getCurrentRecord() = currentRecord
     override fun getMaxRecord() = maxRecord
@@ -128,11 +120,6 @@ class AppRepositoryImpl : AppRepository {
         }
     }
 
-//    override fun insertRecord(data: RecordData) = recordDao.addRecord(data)
-//    override fun twentyBestScores() = recordDao.twentyBestScores()
-
-
-    @SuppressLint("NewApi")
     fun isFinish(): Boolean {
         if (isLose) return false// user is not able to lose 2 times
 
@@ -167,14 +154,14 @@ class AppRepositoryImpl : AppRepository {
         }
     }
 
-    override fun moveLeft(): Boolean {
+    override fun moveLeft() {
         var index: Int
         var canMove = false
 
         prevScore = currentRecord.value!!
         for (i in matrix.indices) {
             for (j in matrix.indices) {
-                prevHelperMatrix[i][j] = matrix[i][j]
+                prevSaverMatrix[i][j] = matrix[i][j]
             }
         }
 
@@ -218,24 +205,23 @@ class AppRepositoryImpl : AppRepository {
             addElement()
             for (i in matrix.indices) {
                 for (j in matrix.indices) {
-                    prevMatrix[i][j] = prevHelperMatrix[i][j]
+                    prevMatrix[i][j] = prevSaverMatrix[i][j]
                 }
             }
             canMoveBack = true
         }
 
-
-        return !isFinish()
+        isFinished.postValue(isFinish())
     }
 
-    override fun moveRight(): Boolean {
+    override fun moveRight() {
         var index: Int
         var canMove = false
 
         prevScore = currentRecord.value!!
         for (i in matrix.indices) {
             for (j in matrix.indices) {
-                prevHelperMatrix[i][j] = matrix[i][j]
+                prevSaverMatrix[i][j] = matrix[i][j]
             }
         }
 
@@ -280,23 +266,23 @@ class AppRepositoryImpl : AppRepository {
             addElement()
             for (i in matrix.indices) {
                 for (j in matrix.indices) {
-                    prevMatrix[i][j] = prevHelperMatrix[i][j]
+                    prevMatrix[i][j] = prevSaverMatrix[i][j]
                 }
             }
             canMoveBack = true
         }
 
-        return !isFinish()
+        isFinished.postValue(isFinish())
     }
 
-    override fun moveUp(): Boolean {
+    override fun moveUp() {
         var index: Int
         var canMove = false
 
         prevScore = currentRecord.value!!
         for (i in matrix.indices) {
             for (j in matrix.indices) {
-                prevHelperMatrix[i][j] = matrix[i][j]
+                prevSaverMatrix[i][j] = matrix[i][j]
             }
         }
 
@@ -342,22 +328,23 @@ class AppRepositoryImpl : AppRepository {
             addElement()
             for (i in matrix.indices) {
                 for (j in matrix.indices) {
-                    prevMatrix[i][j] = prevHelperMatrix[i][j]
+                    prevMatrix[i][j] = prevSaverMatrix[i][j]
                 }
             }
             canMoveBack = true
         }
-        return !isFinish()
+
+        isFinished.postValue(isFinish())
     }
 
-    override fun moveDown(): Boolean {
+    override fun moveDown() {
         var index: Int
         var canMove = false
 
         prevScore = currentRecord.value!!
         for (i in matrix.indices) {
             for (j in matrix.indices) {
-                prevHelperMatrix[i][j] = matrix[i][j]
+                prevSaverMatrix[i][j] = matrix[i][j]
             }
         }
         for (j in matrix.indices) {
@@ -403,37 +390,26 @@ class AppRepositoryImpl : AppRepository {
             addElement()
             for (i in matrix.indices) {
                 for (j in matrix.indices) {
-                    prevMatrix[i][j] = prevHelperMatrix[i][j]
+                    prevMatrix[i][j] = prevSaverMatrix[i][j]
                 }
             }
             canMoveBack = true
         }
 
-        return !isFinish()
+        isFinished.postValue(isFinish())
     }
 
-    @SuppressLint("NewApi")
-    override fun saveResult() {
-//        val result = currentRecord.value!!
-
-        executorService.execute {
-//            val currentTime = java.time.Instant.now().toEpochMilli()
-//            insertRecord(RecordData(currentTime, result))
-        }
-    }
-
-    override fun saveIsWin() {
-        sharedPref.setIsWin(isWin)
-    }
+    override fun saveIsWin() = sharedPref.setIsWin(isWin)
 
     override fun saveButtonsState() {
         val result = matrix.joinToString("#") {
             it.joinToString("#")
         }
 
-        sharedPref
-            .saveLastGame(result)
-            .saveLastUserScore(currentRecord.value ?: 0)
+        sharedPref.apply {
+            saveLastGame(result)
+            saveLastUserScore(currentRecord.value ?: 0)
+        }
     }
 
     override fun saveIsWinHelper(num: Int) {

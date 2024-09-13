@@ -16,20 +16,21 @@ class MySharedPref {
         }
 
         fun getInstance() = instance!!
+
+
+        const val SHARED_PREF = "SHAREDPREF"
+        const val SAVE = "SAVE"
+        const val CURRENT = "CURRENT"
+        const val MAX = "MAX"
+        const val IS_WIN = "IS_WIN"
+        const val NUM = "NUM"
     }
 
-    fun saveLastGame(string: String): MySharedPref {
-        sharedPref.edit().putString("SAVE", string).apply()
-        //Log.d("TTT", "shared save -> $string")
-        return instance!!
-    }
-
+    fun saveLastGame(string: String): Unit = sharedPref.edit().putString(SAVE, string).apply()
     fun getSavedGame(): List<Int> {
-        val str = sharedPref.getString("SAVE", "")
+        val str = sharedPref.getString(SAVE, "")
         val arr = str!!.split("#")
 
-//        Log.d("TTT", "array size -> ${arr.size}")
-//        Log.d("TTT", "array -> $arr")
         if (arr.size != 16) return emptyList()
 
         val ls = ArrayList<Int>(16)
@@ -40,31 +41,15 @@ class MySharedPref {
         return ls
     }
 
-    fun saveLastUserScore(currentScore: Long) {
-        sharedPref.edit().putLong("CURRENT", currentScore).apply()
-    }
+    fun saveLastUserScore(currentScore: Long): Unit = sharedPref.edit().putLong(CURRENT, currentScore).apply()
+    fun getLastUserScore(): Long = sharedPref.getLong(CURRENT, 0)
 
-    fun getLastUserScore(): Long = sharedPref.getLong("CURRENT", 0)
+    fun saveMax(max: Long): Unit = sharedPref.edit().putLong(MAX, max).apply()
+    fun getMax(): Long = sharedPref.getLong(MAX, 0)
 
-    fun getMax(): Long {
-        return sharedPref.getLong("MAX", 0)
-    }
+    fun setIsWin(isWin: Boolean): Unit = sharedPref.edit().putBoolean(IS_WIN, isWin).apply()
+    fun getIsWin(): Boolean = sharedPref.getBoolean(IS_WIN, false)
 
-    fun saveMax(max: Long) {
-        sharedPref.edit().putLong("MAX", max).apply()
-    }
-
-    fun getIsWin(): Boolean = sharedPref.getBoolean("ISWIN", false)
-
-    fun setIsWin(isWin: Boolean) {
-        sharedPref.edit().putBoolean("ISWIN", isWin).apply()
-    }
-
-    fun saveIsWinHelper(num: Int) {
-        sharedPref.edit().putInt("NUM", num).apply()
-    }
-
-    fun getNum(): Int {
-        return sharedPref.getInt("NUM", 0)
-    }
+    fun saveIsWinHelper(num: Int): Unit = sharedPref.edit().putInt(NUM, num).apply()
+    fun getNum(): Int = sharedPref.getInt(NUM, 0)
 }

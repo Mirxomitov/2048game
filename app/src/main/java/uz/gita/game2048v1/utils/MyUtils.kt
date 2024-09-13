@@ -1,5 +1,6 @@
 package uz.gita.game2048v1.utils
 
+import android.content.Context
 import android.view.View
 import androidx.fragment.app.FragmentActivity
 
@@ -25,17 +26,9 @@ fun View.animateOnClick(animate: Boolean = true, body: () -> Unit) {
     } else this.setOnSingleClickListener { body() }
 }
 
-class OnSingleClickListener : View.OnClickListener {
+class OnSingleClickListener(listener: (View) -> Unit) : View.OnClickListener {
 
-    private val onClickListener: View.OnClickListener
-
-    constructor(listener: View.OnClickListener) {
-        onClickListener = listener
-    }
-
-    constructor(listener: (View) -> Unit) {
-        onClickListener = View.OnClickListener { listener.invoke(it) }
-    }
+    private val onClickListener: View.OnClickListener = View.OnClickListener { listener.invoke(it) }
 
     override fun onClick(v: View) {
         val currentTimeMillis = System.currentTimeMillis()
@@ -52,11 +45,8 @@ class OnSingleClickListener : View.OnClickListener {
     }
 }
 
-fun View.setOnSingleClickListener(l: View.OnClickListener) {
-    setOnClickListener(OnSingleClickListener(l))
-}
-
 fun View.setOnSingleClickListener(l: (View) -> Unit) {
     setOnClickListener(OnSingleClickListener(l))
 }
 
+fun Int.dpToPx(context: Context): Float = (this * context.resources.displayMetrics.density)

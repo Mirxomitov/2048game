@@ -9,7 +9,7 @@ import android.view.View
 import uz.gita.game2048v1.data.model.SideEnum
 import kotlin.math.abs
 
-class MyTouchListener(private val context: Context) : View.OnTouchListener {
+class MyTouchListener(context: Context) : View.OnTouchListener {
     private val gestureDetector = GestureDetector(context, MyGestureDetector())
     private var actionSideEnumListener: ((SideEnum) -> Unit)? = null
 
@@ -26,20 +26,6 @@ class MyTouchListener(private val context: Context) : View.OnTouchListener {
             velocityX: Float,
             velocityY: Float,
         ): Boolean {
-
-//            if (abs(startEvent!!.x - endEvent.x) <= 100 && abs(startEvent.y - endEvent.y) <= 100) return true
-//            // horizontal
-//            if (abs(startEvent.x - endEvent.x) > abs(startEvent.y - endEvent.y)) {
-//                if (startEvent.x > endEvent.x) actionSideEnumListener?.invoke(SideEnum.LEFT)
-//                else actionSideEnumListener?.invoke(SideEnum.RIGHT)
-//            } else {
-//                if (startEvent.y > endEvent.y) actionSideEnumListener?.invoke(SideEnum.UP)
-//                else actionSideEnumListener?.invoke(SideEnum.DOWN)
-//            }
-//            return super.onFling(startEvent, endEvent, velocityX, velocityY)
-
-
-
             if (abs(startEvent!!.x - endEvent.x) <= 100 && abs(startEvent.y - endEvent.y) <= 100)
                 return true
 

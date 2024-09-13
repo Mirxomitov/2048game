@@ -20,7 +20,6 @@ import uz.gita.game2048v1.utils.MyBackgroundUtil
 import uz.gita.game2048v1.utils.MyTouchListener
 import uz.gita.game2048v1.utils.animateOnClick
 import uz.gita.game2048v1.utils.popBackStack
-import uz.gita.game2048v1.utils.setOnSingleClickListener
 
 class PlayScreen : Fragment(R.layout.screen_play) {
     private val binding by viewBinding(ScreenPlayBinding::bind)
@@ -71,14 +70,12 @@ class PlayScreen : Fragment(R.layout.screen_play) {
             }
 
             dialog.setPlayListener {
-                viewModel.saveResult()
                 viewModel.startNewGame()
                 dialog.dismiss()
                 loadData()
             }
 
             dialog.setHomeListener {
-                viewModel.saveResult()
                 viewModel.startNewGame()
                 loadData()
                 dialog.dismiss()
@@ -177,20 +174,3 @@ class PlayScreen : Fragment(R.layout.screen_play) {
         viewModel.saveIsWin()
     }
 }
-
-
-/*
-       val dialog = WinDialog()
-       dialog.apply
-       {
-           arguments = bundleOf(
-               Pair("MAX", binding.bestScore.text.toString()),
-               Pair("CURRENT", binding.currentScore.text.toString())
-           )
-       }
-       dialog.setListener
-       {
-           dialog.dismiss()
-       }
-       dialog.show(parentFragmentManager, "WinDialog")
-*/

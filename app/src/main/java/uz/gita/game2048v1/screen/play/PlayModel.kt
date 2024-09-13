@@ -1,11 +1,10 @@
 package uz.gita.game2048v1.screen.play
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import uz.gita.game2048v1.domain.AppRepository
 import uz.gita.game2048v1.domain.AppRepositoryImpl
 
-class PlayModel : ViewModel() {
+class PlayModel {
     private val repository: AppRepository = AppRepositoryImpl.getInstance()
 
     fun getMatrix() = repository.getMatrix()
@@ -13,6 +12,7 @@ class PlayModel : ViewModel() {
     fun moveRight() = repository.moveRight()
     fun moveDown() = repository.moveDown()
     fun moveUp() = repository.moveUp()
+    val isFinished: MutableLiveData<Boolean> = repository.isFinished
 
     fun startNewGame() {
         repository.startNewGame()
@@ -28,10 +28,6 @@ class PlayModel : ViewModel() {
 
     fun backOneStep() {
         repository.backOneStep()
-    }
-
-    fun saveResult() {
-        repository.saveResult()
     }
 
     fun saveIsWin() {
