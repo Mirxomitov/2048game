@@ -1,7 +1,6 @@
 package uz.gita.game2048v1.app
 
 import android.app.Application
-//import uz.gita.game2048v1.data.source.MyDatabase
 import uz.gita.game2048v1.data.source.MySharedPref
 import uz.gita.game2048v1.domain.AppRepositoryImpl
 

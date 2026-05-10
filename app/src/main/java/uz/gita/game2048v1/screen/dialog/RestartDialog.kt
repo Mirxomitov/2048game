@@ -10,9 +10,9 @@ import android.view.Window
 import android.view.WindowManager.LayoutParams
 import androidx.fragment.app.DialogFragment
 import by.kirich1409.viewbindingdelegate.viewBinding
-import uz.gita.game2048v1.R
-import uz.gita.game2048v1.databinding.DialogRestartBinding
 import uz.gita.game2048v1.utils.animateOnClick
+import uz.mirxomitov.game2048.R
+import uz.mirxomitov.game2048.databinding.DialogRestartBinding
 
 
 class RestartDialog : DialogFragment() {

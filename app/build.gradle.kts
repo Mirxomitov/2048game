@@ -7,15 +7,15 @@ plugins {
 }
 
 android {
-    namespace = "uz.gita.game2048v1"
-    compileSdk = 34
+    namespace = "uz.mirxomitov.game2048"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "uz.gita.game2048v1"
+        applicationId = "uz.mirxomitov.game2048"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 8
-        versionName = "1.5"
+        targetSdk = 35
+        versionCode = 12
+        versionName = "1.12"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -1,18 +1,18 @@
 package uz.gita.game2048v1.screen.dialog
 
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.DialogFragment
 import by.kirich1409.viewbindingdelegate.viewBinding
-import uz.gita.game2048v1.R
-import uz.gita.game2048v1.databinding.DialogWinBinding
 import uz.gita.game2048v1.utils.animateOnClick
+import uz.mirxomitov.game2048.R
+import uz.mirxomitov.game2048.databinding.DialogWinBinding
 
 
 class WinDialog : DialogFragment() {
@@ -22,7 +22,7 @@ class WinDialog : DialogFragment() {
     ): View {
         val view: View = inflater.inflate(R.layout.dialog_win, container, false)
         if (dialog != null && dialog!!.window != null) {
-            dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog!!.window!!.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
             dialog!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
         }
         return view

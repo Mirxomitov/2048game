@@ -5,9 +5,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import uz.gita.game2048v1.R
-import uz.gita.game2048v1.databinding.ScreenMainBinding
 import uz.gita.game2048v1.utils.animateOnClick
+import uz.mirxomitov.game2048.R
+import uz.mirxomitov.game2048.databinding.ScreenMainBinding
 
 class MainScreen : Fragment(R.layout.screen_main) {
     private val binding by viewBinding(ScreenMainBinding::bind)

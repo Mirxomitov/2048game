@@ -1,7 +1,6 @@
 package uz.gita.game2048v1.screen.dialog
 
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +9,10 @@ import android.view.Window
 import android.view.WindowManager.LayoutParams
 import androidx.fragment.app.DialogFragment
 import by.kirich1409.viewbindingdelegate.viewBinding
-import uz.gita.game2048v1.R
-import uz.gita.game2048v1.databinding.DialogGameOverBinding
 import uz.gita.game2048v1.utils.animateOnClick
+import uz.mirxomitov.game2048.R
+import uz.mirxomitov.game2048.databinding.DialogGameOverBinding
+import androidx.core.graphics.drawable.toDrawable
 
 class GameOverDialog : DialogFragment() {
     override fun onCreateView(
@@ -21,7 +21,7 @@ class GameOverDialog : DialogFragment() {
     ): View {
         val view: View = inflater.inflate(R.layout.dialog_game_over, container, false)
         if (dialog != null && dialog!!.window != null) {
-            dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog!!.window!!.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
             dialog!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
         }
         return view

@@ -1,6 +1,6 @@
 package uz.gita.game2048v1.utils
 
-import uz.gita.game2048v1.R
+import uz.mirxomitov.game2048.R
 
 object MyBackgroundUtil {
     private val bgMap = hashMapOf(

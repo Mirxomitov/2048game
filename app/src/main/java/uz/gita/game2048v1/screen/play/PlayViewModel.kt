@@ -11,6 +11,7 @@ class PlayViewModel : ViewModel() {
     val showGameOverDialog = MutableLiveData<String>()
     val showWinDialog = MutableLiveData<String>()
     val isFinished = model.isFinished
+    var canLoadData = true
 
     init {
         model.isFinished.observeForever {

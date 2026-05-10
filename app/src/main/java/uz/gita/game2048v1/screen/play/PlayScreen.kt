@@ -9,9 +9,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.gita.game2048v1.MainActivity
-import uz.gita.game2048v1.R
+import uz.mirxomitov.game2048.R
 import uz.gita.game2048v1.data.model.SideEnum
-import uz.gita.game2048v1.databinding.ScreenPlayBinding
+import uz.mirxomitov.game2048.databinding.ScreenPlayBinding
 import uz.gita.game2048v1.screen.dialog.GameOverDialog
 import uz.gita.game2048v1.screen.dialog.RestartDialog
 import uz.gita.game2048v1.screen.dialog.WinDialog
@@ -137,6 +137,10 @@ class PlayScreen : Fragment(R.layout.screen_play) {
     }
 
     private fun loadData() {
+        if (!viewModel.canLoadData) return
+        viewModel.canLoadData = false
+
+        viewModel
         binding.btnBack
             .animate()
             .setDuration(100L)
@@ -146,8 +150,10 @@ class PlayScreen : Fragment(R.layout.screen_play) {
         val matrix = viewModel.getMatrix()
         for (i in matrix.indices) {
             for (j in matrix[i].indices) {
-                list[i * 4 + j].text = if (matrix[i][j] == 0) "" else "${matrix[i][j]}"
-                list[i * 4 + j].setBackgroundResource(MyBackgroundUtil.backgroundByAmount(matrix[i][j]))
+                val view = list[i * 4 + j]
+                view.text = if (matrix[i][j] == 0) "" else "${matrix[i][j]}"
+                view.setBackgroundResource(MyBackgroundUtil.backgroundByAmount(matrix[i][j]))
+                viewModel.canLoadData = true
             }
         }
     }
